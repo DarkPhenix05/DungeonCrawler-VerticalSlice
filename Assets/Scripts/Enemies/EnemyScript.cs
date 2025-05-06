@@ -36,21 +36,7 @@ public class EnemyScript : MonoBehaviour
 
         agent.destination = agentDestination.position;
 
-        if (_rbSpeed != Vector3.zero)
-        {
-            if (_rbSpeed.y != 0)
-            {
-                //Debug.Log("FALLING");
-            }
-            else
-            {
-                _audioManager.PlayWalkSound();
-            }
-        }
-        else
-        {
-            _audioManager.StopWalkSound();
-        }
+        _audioManager.PlayWalkSound();
     }
 
     public void TakeDamage(int _dmg)
@@ -94,6 +80,7 @@ public class EnemyScript : MonoBehaviour
     private IEnumerator StopMovement()
     {
         agent.isStopped = true;
+        _audioManager.StopWalkSound();
         yield return new WaitForSeconds(3);
         agent.isStopped = false;
     }
