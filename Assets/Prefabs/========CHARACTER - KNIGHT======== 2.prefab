@@ -256,12 +256,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 247429284c9852746b4fb015a5fc00b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pickedObjects: []
-  _pickedObjectsUses: 
+  goldText: {fileID: 0}
+  _weapons: []
   _gold: 0
-  _tempObj: {fileID: 0}
+  _smallKey: 0
+  _midKey: 0
+  _bigKey: 0
+  _selectedWeapon: 0
   _transform: {fileID: 0}
-  _selectedObject: 0
 --- !u!1 &1246662818011597692
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,7 +929,7 @@ Transform:
   - {fileID: 891125335314631209}
   - {fileID: 2077844634420006549}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &7784157123912669156
 MonoBehaviour:
@@ -967,6 +969,8 @@ MonoBehaviour:
   canCollect: 0
   inRange: 0
   chest: 0
+  _hud: {fileID: 0}
+  _GOUI: {fileID: 0}
 --- !u!114 &6100250111830827403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -979,12 +983,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 247429284c9852746b4fb015a5fc00b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pickedObjects: []
-  _pickedObjectsUses: 
+  goldText: {fileID: 0}
+  _weapons: []
   _gold: 0
-  _tempObj: {fileID: 0}
+  _smallKey: 0
+  _midKey: 0
+  _bigKey: 0
+  _selectedWeapon: 0
   _transform: {fileID: 0}
-  _selectedObject: 0
 --- !u!82 &3014002465144741444
 AudioSource:
   m_ObjectHideFlags: 0

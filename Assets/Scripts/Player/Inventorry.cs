@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.Rendering.DebugUI;
 
 public class Inventorry : MonoBehaviour
 {
@@ -16,7 +14,7 @@ public class Inventorry : MonoBehaviour
     [SerializeField] private int _bigKey;
     
     [SerializeField] private int _selectedWeapon;
-    [SerializeField] private Transform _transforms;
+    [SerializeField] private Transform _transform;
 
     void Start()
     {
@@ -56,38 +54,27 @@ public class Inventorry : MonoBehaviour
         return _gold;
     }
 
-    public void TakeKey(GameObject pickUp, int tipe)
+    public void TakeKey(GameObject key, int tipe)
     {
-        Key tempkey = pickUp.GetComponent<Key>();
+        Key tempkey = key.GetComponent<Key>();
         tempkey.PickUpEfect();
-        pickUp.GetTipe();
+
+        int T = tempkey.GetTipe();
+        AddKey(T);
     }
 
-    private void AddKey(int T)
-    {
-        if(T == 1)
-        {
-            _smallKey++
-        }
-        else if(T == 2)
-        {
-            _midKey++
-        }
-        else if(T == 3)
-        {
-            _bigKey++
-        }
-        else
-        {
-            Debug.Log("ERROR KEY TIPE OVER FLOW");
-        }
-    }
-    public bool HaveNeededItem(int tipe)
+    public bool HaveNeededKey(int tipe)
     {
         switch(tipe)
         {
             case 1:
-            
+            return (_smallKey > 0);
+                
+            case 2:
+            return (_midKey > 0);
+
+            case 3:
+            return (_bigKey > 0);
         }
 
         return false;
@@ -95,7 +82,38 @@ public class Inventorry : MonoBehaviour
 
     public void UseKey(int tipe)
     {
-        
+        switch (tipe)
+        {
+            case 1:
+                _smallKey--;
+                return;
+
+            case 2:
+                _midKey--;
+                return;
+
+            case 3:
+                _bigKey--;
+                return;
+        }
+    }
+
+    public void AddKey(int tipe)
+    {
+        switch (tipe)
+        {
+            case 1:
+                _smallKey++;
+                return;
+
+            case 2:
+                _midKey++;
+                return;
+
+            case 3:
+                _bigKey++;
+                return;
+        }
     }
 
     private void UpdateUIGoldValue()

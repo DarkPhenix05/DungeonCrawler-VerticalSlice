@@ -32,7 +32,7 @@ public class EnemyScript : MonoBehaviour
     private void Movement()
     {
         _rbSpeed = (_rb.velocity).normalized;
-        Debug.Log(_rbSpeed);
+        //Debug.Log(_rbSpeed);
 
         agent.destination = agentDestination.position;
 
