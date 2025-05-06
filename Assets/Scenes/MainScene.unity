@@ -408,6 +408,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &124304771 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5491207100214197809, guid: 61bf5f71fb1434c4294ec1589ec5ce1b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1095471099}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &159472807 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 924567715698858503, guid: 818f77c13869adf499934300fd7de9da,
@@ -434,6 +440,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2090034673}
     m_Modifications:
+    - target: {fileID: 2195093487886295374, guid: 83f4ca17a9db8c245a3db06c18fde11d,
+        type: 3}
+      propertyPath: _voiceLines
+      value: 
+      objectReference: {fileID: 1212427164}
+    - target: {fileID: 2195093487886295374, guid: 83f4ca17a9db8c245a3db06c18fde11d,
+        type: 3}
+      propertyPath: _swordSource
+      value: 
+      objectReference: {fileID: 808883504}
+    - target: {fileID: 2195093487886295374, guid: 83f4ca17a9db8c245a3db06c18fde11d,
+        type: 3}
+      propertyPath: _soundEffects
+      value: 
+      objectReference: {fileID: 124304771}
     - target: {fileID: 3720197847880209894, guid: 83f4ca17a9db8c245a3db06c18fde11d,
         type: 3}
       propertyPath: agentDestination
@@ -498,16 +519,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ogre
-      objectReference: {fileID: 0}
-    - target: {fileID: 4847507516764590750, guid: 83f4ca17a9db8c245a3db06c18fde11d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4847507516764590750, guid: 83f4ca17a9db8c245a3db06c18fde11d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1830,6 +1841,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7310270786266226078}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &808883504 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3736296140358093935, guid: 61bf5f71fb1434c4294ec1589ec5ce1b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1095471099}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &809390501 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1055389022685321324, guid: dea7fcada45480e489dbdcfb5111af23,
@@ -2748,16 +2765,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Golem
       objectReference: {fileID: 0}
-    - target: {fileID: 5715850843844334157, guid: 61bf5f71fb1434c4294ec1589ec5ce1b,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5715850843844334157, guid: 61bf5f71fb1434c4294ec1589ec5ce1b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7852037390595574626, guid: 61bf5f71fb1434c4294ec1589ec5ce1b,
         type: 3}
       propertyPath: m_RootOrder
@@ -2841,6 +2848,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5062501990169893510, guid: caa448e39eaa8684a8ca6563618a6d99,
     type: 3}
   m_PrefabInstance: {fileID: 1536688736023195808}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1212427164 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6976678694377249502, guid: 61bf5f71fb1434c4294ec1589ec5ce1b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1095471099}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1228994038 stripped
 Transform:

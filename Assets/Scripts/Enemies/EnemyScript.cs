@@ -4,8 +4,11 @@ using UnityEngine.AI;
 
 public class EnemyScript : MonoBehaviour
 {
+    public AudioEnenmy _audioManager;
+
     public EnemyStatsSO stats;
-    public Rigidbody rb;
+    public Rigidbody _rb;
+    private Vector3 _rbSpeed;
 
     public int hp;
 
@@ -17,7 +20,8 @@ public class EnemyScript : MonoBehaviour
 
     private void Awake()
     {
-        rb.GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
+        _audioManager = GetComponent<AudioEnenmy>();
     }
 
     private void Update()
@@ -27,7 +31,26 @@ public class EnemyScript : MonoBehaviour
 
     private void Movement()
     {
+        _rbSpeed = (_rb.velocity).normalized;
+        Debug.Log(_rbSpeed);
+
         agent.destination = agentDestination.position;
+
+        if (_rbSpeed != Vector3.zero)
+        {
+            if (_rbSpeed.y != 0)
+            {
+                //Debug.Log("FALLING");
+            }
+            else
+            {
+                _audioManager.PlayWalkSound();
+            }
+        }
+        else
+        {
+            _audioManager.StopWalkSound();
+        }
     }
 
     public void TakeDamage(int _dmg)
@@ -48,6 +71,7 @@ public class EnemyScript : MonoBehaviour
         if (atkTimer >= stats.attackFrequency)
         {
             _player.TakeDamage(stats.attackPower);
+            _audioManager.PlayAttackSound();
             atkTimer = 0;
         }
     }
@@ -57,7 +81,7 @@ public class EnemyScript : MonoBehaviour
         if (collision.transform.CompareTag("Player"))
         {
             Attack(collision.transform.gameObject.GetComponent<Player>());
-            rb.velocity = Vector3.zero;
+            _rb.velocity = Vector3.zero;
 
             if (stopMovementCoroutine != null)
                 StopCoroutine(stopMovementCoroutine);
