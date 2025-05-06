@@ -11,7 +11,7 @@ public class Key : MonoBehaviour
     [Header("INVENTORY PARAMETERS")]
     private GameObject _player;
     private Inventorry _inventorry;
-    [SerializeField] private int _uses;
+    [SerializeField] private int _tipe;
 
 
     [Header("TURN EFFECTS")]
@@ -88,7 +88,7 @@ public class Key : MonoBehaviour
     {
         if (other.gameObject == _player)
         {
-            _inventorry.TakePickUp(this.gameObject, _uses);
+            _inventorry.TakePickUp(this.gameObject, int tipe);
         }
 
         if (other.gameObject.layer == 31)
@@ -100,6 +100,11 @@ public class Key : MonoBehaviour
             //Debug.Log(_startPosition);
         }
         //Debug.Log(other.gameObject.layer);
+    }
+
+    public int GetTipe()
+    {
+        return _tipe;
     }
 
     IEnumerator TakeKey()

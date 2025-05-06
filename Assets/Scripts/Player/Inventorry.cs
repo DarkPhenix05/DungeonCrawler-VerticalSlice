@@ -9,14 +9,14 @@ public class Inventorry : MonoBehaviour
     [Header("UI")]
     public Text goldText;
 
-    [SerializeField] private List<GameObject> _pickedObjects;
-    [SerializeField] private List<int> _pickedObjectsUses;
+    [SerializeField] private List<GameObject> _weapons;
     [SerializeField] private int _gold;
-
-    [SerializeField] private GameObject _tempObj;
-    [SerializeField] private Transform _transform;
+    [SerializeField] private int _smallKey;
+    [SerializeField] private int _midKey;
+    [SerializeField] private int _bigKey;
     
-    [SerializeField] private int _selectedObject;
+    [SerializeField] private int _selectedWeapon;
+    [SerializeField] private Transform _transforms;
 
     void Start()
     {
@@ -28,7 +28,6 @@ public class Inventorry : MonoBehaviour
     {
         gold.GetComponent<Gold>().PickUpEfect();
         gold.transform.position = _transform.position;
-        gold.transform.parent = _transform;
 
         _gold += value;
         UpdateUIGoldValue();
@@ -57,47 +56,46 @@ public class Inventorry : MonoBehaviour
         return _gold;
     }
 
-    public void TakePickUp(GameObject pickUp, int uses)
+    public void TakeKey(GameObject pickUp, int tipe)
     {
-        pickUp.GetComponent<Key>().PickUpEfect();
-        pickUp.transform.position = _transform.position;
-        pickUp.transform.parent = _transform;
-
-        _pickedObjects.Add(pickUp);
-        _pickedObjectsUses.Add(uses);
+        Key tempkey = pickUp.GetComponent<Key>();
+        tempkey.PickUpEfect();
+        pickUp.GetTipe();
     }
 
-    public bool HaveNeededItem(GameObject requieredItem)
+    private void AddKey(int T)
     {
-        for (int i = 0; _pickedObjects.Count > i; i++)
+        if(T == 1)
         {
-            if (_pickedObjects[i] == requieredItem)
-            {
-               _selectedObject = i;
-               Debug.Log(_selectedObject);
-                return true;
-            }
+            _smallKey++
+        }
+        else if(T == 2)
+        {
+            _midKey++
+        }
+        else if(T == 3)
+        {
+            _bigKey++
+        }
+        else
+        {
+            Debug.Log("ERROR KEY TIPE OVER FLOW");
+        }
+    }
+    public bool HaveNeededItem(int tipe)
+    {
+        switch(tipe)
+        {
+            case 1:
+            
         }
 
         return false;
     }
 
-    public void UseKey()
+    public void UseKey(int tipe)
     {
-        Debug.Log(_pickedObjectsUses[_selectedObject]);
         
-        int temp = _pickedObjectsUses[_selectedObject];
-        temp -= 1;
-        
-        _pickedObjectsUses[_selectedObject] = temp;
-        
-        Debug.Log(_pickedObjectsUses[_selectedObject]);
-        
-        if (_pickedObjectsUses[_selectedObject] <= 0.0f)
-        {
-                _pickedObjects.RemoveAt(_selectedObject);
-                _pickedObjectsUses.RemoveAt(_selectedObject);
-        }
     }
 
     private void UpdateUIGoldValue()
