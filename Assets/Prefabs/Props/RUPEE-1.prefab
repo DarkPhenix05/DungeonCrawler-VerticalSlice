@@ -4998,14 +4998,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5524566298196398214}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.95, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4774203788791891568}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1003729179734006455
 MonoBehaviour:
@@ -5025,8 +5025,8 @@ MonoBehaviour:
   _hopTop: 0.5
   _hopBottom: 0
   _model: {fileID: 4978195764450554696}
-  _pickUpAudioClip: {fileID: 0}
-  _hoverAudioClip: {fileID: 0}
+  _pickUpAudioClip: {fileID: 8300000, guid: 64fa783f9029b07489c467cdeaa395e5, type: 3}
+  _hoverAudioClip: {fileID: 8300000, guid: 64fa783f9029b07489c467cdeaa395e5, type: 3}
 --- !u!54 &5892736214698100021
 Rigidbody:
   m_ObjectHideFlags: 0

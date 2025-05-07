@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,8 +9,10 @@ public class Key : MonoBehaviour
 
     [Header("INVENTORY PARAMETERS")]
     private GameObject _player;
-    private Inventorry _inventorry;
-    [SerializeField] private int _uses;
+    private Inventory _inventorry;
+
+    [Range(1, 3)]
+    [SerializeField] private int _tipe;
 
 
     [Header("TURN EFFECTS")]
@@ -37,7 +38,8 @@ public class Key : MonoBehaviour
     void Awake()
     {
         _player = GameObject.FindObjectOfType<Player>().gameObject;
-        _inventorry = GameObject.FindObjectOfType<Inventorry>();
+        _inventorry = GameObject.FindObjectOfType<Inventory>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -88,37 +90,47 @@ public class Key : MonoBehaviour
     {
         if (other.gameObject == _player)
         {
-            _inventorry.TakePickUp(this.gameObject, _uses);
+            _inventorry.TakeKey(this.gameObject, _tipe);
         }
 
         if (other.gameObject.layer == 31)
         {
             _startPosition = transform.position + new Vector3(0.1f,0.1f,0.1f);
-            gameObject.GetComponent<Rigidbody>().constraints =  RigidbodyConstraints.FreezeRotationX 
-                                                                | RigidbodyConstraints.FreezePositionY 
-                                                                | RigidbodyConstraints.FreezeRotationZ;
+            gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX
+                                                                | RigidbodyConstraints.FreezeRotationZ
+                                                                | RigidbodyConstraints.FreezePositionX 
+                                                                | RigidbodyConstraints.FreezePositionZ;
+
             //Debug.Log(_startPosition);
         }
         //Debug.Log(other.gameObject.layer);
     }
 
+    public int GetTipe()
+    {
+        return _tipe;
+    }
+
     IEnumerator TakeKey()
     {
-        if (_pickUpAudioClip != null)
+        if (_pickUpAudioClip && _audioSource)
         {
-            Debug.Log("START CORRUTINE");
-            //_audioSource.clip = _pickUpAudioClip;
-            //_audioSource.pitch = Random.Range(0.9f, 1.1f);
-            //_audioSource.volume = 1.0f;
-            //_audioSource.Play();
+            //Debug.Log(this.gameObject.ToString() + "AUDIO WORKERD");
+
+            _audioSource.clip = _pickUpAudioClip;
+            _audioSource.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
+            _audioSource.volume = 1.0f;
+            _audioSource.Play();
+
+            gameObject.GetComponent<Rigidbody>().useGravity = false;
+            this.gameObject.GetComponent<SphereCollider>().enabled = false;
+            _model.SetActive(false);
+
             keyIcon.gameObject.SetActive(true);
 
-            yield return new WaitForSeconds(1.0f);
-
-            this.gameObject.SetActive(false);
+            yield return new WaitForSeconds(_pickUpAudioClip.length);
         }
 
-        Debug.Log("End wait");
         this.gameObject.SetActive(false);
     }
 

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Chest : MonoBehaviour
 {
@@ -9,7 +8,6 @@ public class Chest : MonoBehaviour
     [SerializeField] private GameObject _keyBoard;
     [SerializeField] private GameObject _gamePad;
     [SerializeField] private Camera _camera;
-    [SerializeField] private GameObject _key;
     [SerializeField] private List<GameObject> _reward;
     [SerializeField] private GameObject _rewardHolder;
     public ParticleSystem _particleSistem;
@@ -60,13 +58,15 @@ public class Chest : MonoBehaviour
     {
         if (other.gameObject == _player)
         {
-            _playerScript.chest = true;
-            _playerScript.inRange = true;
-            _playerScript.canCollect = _playerScript.HaveKey(_key, this.gameObject);
-            Debug.Log(_playerScript.canCollect);
-            
             if (!opened)
             {
+                _playerScript.chest = true;
+                _playerScript.inRange = true;
+                _playerScript._interactionObject = this.gameObject;
+
+                _playerScript.canCollect = _playerScript.HaveKey(1);
+                Debug.Log(_playerScript.canCollect);
+            
                 _canvas.gameObject.SetActive(true);
             }
         }
@@ -79,6 +79,8 @@ public class Chest : MonoBehaviour
             _playerScript.chest = false;
             _playerScript.inRange = false;
             _playerScript.canCollect = false;
+            _playerScript._interactionObject = null;
+
             _canvas.gameObject.SetActive(false);
         }
     }

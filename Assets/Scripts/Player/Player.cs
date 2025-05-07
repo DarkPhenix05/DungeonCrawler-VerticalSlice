@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
@@ -50,11 +48,13 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioManager _audioManager;
     
     [Header("Inventory - Interactions")]
-    [SerializeField] private GameObject _interactionObject;
-    [SerializeField] private Inventorry _inventorry;
+    public GameObject _interactionObject;
+    [SerializeField] private Inventory _inventorry;
     public bool canCollect = false;
     public bool inRange = false;
     public bool chest = false;
+    public bool normalDoor = false;
+    public bool boosDoor = false;
 
     [Header("UI")]
     public GameObject _hud;
@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
         _playerInputActions.Player.Enable();
         _playerInputActions.Player.Movement.performed += Movement_performed;
         
-        _inventorry = FindObjectOfType<Inventorry>();
+        _inventorry = FindObjectOfType<Inventory>();
         _rb = this.gameObject.GetComponent<Rigidbody>();
         _anim = this.gameObject.GetComponent<Animator>();
         _audioManager =  this.gameObject.GetComponent<AudioManager>();
@@ -132,8 +132,6 @@ public class Player : MonoBehaviour
 
     public void Movement_performed(InputAction.CallbackContext context)
     {
-        Debug.Log(context);
-
        _movement = context.ReadValue<Vector2>();
 
         if(context.canceled)
@@ -172,7 +170,7 @@ public class Player : MonoBehaviour
 
     public void Interact(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && inRange)
         {
             TryToInteract();
             Debug.Log("Interact");
@@ -181,12 +179,24 @@ public class Player : MonoBehaviour
 
     private void TryToInteract()
     {
-        if (inRange && canCollect)
+        if (canCollect)
         {
             if (chest)
             {
                 _interactionObject.GetComponent<Chest>().DropReward();
-                _inventorry.UseKey();
+                _inventorry.UseKey(1);
+            }
+
+            else if(normalDoor)
+            {
+                _interactionObject.GetComponent<Door>().Open();
+                _inventorry.UseKey(2);
+            }
+
+            else if(boosDoor)
+            {
+                _interactionObject.GetComponent<Door>().Open();
+                _inventorry.UseKey(3);
             }
         }
         else
@@ -195,13 +205,16 @@ public class Player : MonoBehaviour
             {
                 _interactionObject.GetComponent<Chest>().Loked();
             }
+            else if(normalDoor || boosDoor)
+            {
+                _interactionObject.GetComponent<Door>().Locked();
+            }
         }
     }
 
-    public bool HaveKey(GameObject key, GameObject interactingObject)
+    public bool HaveKey(int T)
     {
-        _interactionObject = interactingObject;
-        return key == null || _inventorry.HaveNeededItem(key);
+        return _inventorry.HaveNeededKey(T);
     }
 
     public void NormalAttack(InputAction.CallbackContext context)
@@ -218,7 +231,7 @@ public class Player : MonoBehaviour
         else if (context.canceled && !_heaviAttak)
         {
             _anim.SetTrigger("Attack");
-            _anim.SetFloat("AttackNum", Random.Range(1, 3));
+            _anim.SetFloat("AttackNum", UnityEngine.Random.Range(1, 3));
             _sword.SetPosition(0);
             StartCoroutine(TurnAttackCollider(_attackDuration));
 
@@ -242,7 +255,7 @@ public class Player : MonoBehaviour
         else if (context.performed)
         {
             _heaviAttak = true;
-            _audioManager.PlayChargedAtackSound();
+            _audioManager.PlayChargedAttackSound();
         }
         else if (context.canceled && _heaviAttak)
         {
@@ -258,7 +271,6 @@ public class Player : MonoBehaviour
             _holding = false;
         }
     }
-
 
     private IEnumerator TurnAttackCollider(float attackDuration)
     {
