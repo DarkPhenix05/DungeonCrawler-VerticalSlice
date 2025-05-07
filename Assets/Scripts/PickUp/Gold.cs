@@ -1,13 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Gold : MonoBehaviour
 {
     [Header("INVENTORY PARAMETERS")]
     private GameObject _player;
-    private Inventorry _inventorry;
+    private Inventory _inventorry;
     [SerializeField] private int _value;
 
 
@@ -34,7 +32,7 @@ public class Gold : MonoBehaviour
     void Awake()
     {
         _player = GameObject.FindObjectOfType<Player>().gameObject;
-        _inventorry = GameObject.FindObjectOfType<Inventorry>();
+        _inventorry = GameObject.FindObjectOfType<Inventory>();
 
         _audioSource = this.gameObject.GetComponent<AudioSource>();
     }
@@ -93,9 +91,10 @@ public class Gold : MonoBehaviour
         if (other.gameObject.layer == 31)
         {
             _startPosition = transform.position + new Vector3(0.1f, 0.1f, 0.1f);
-            this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX
-                                                                | RigidbodyConstraints.FreezePositionY
-                                                                | RigidbodyConstraints.FreezeRotationZ;
+            gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX
+                                                               | RigidbodyConstraints.FreezeRotationZ
+                                                               | RigidbodyConstraints.FreezePositionX
+                                                               | RigidbodyConstraints.FreezePositionZ;
             //Debug.Log(_startPosition);
         }
         //Debug.Log(other.gameObject.layer);
@@ -103,12 +102,19 @@ public class Gold : MonoBehaviour
 
     IEnumerator TakeGold()
     {
-        if(_pickUpAudioClip)
+        if (_pickUpAudioClip && _audioSource)
         {
+            //Debug.Log(this.gameObject.ToString() + "AUDIO WORKERD");
+
             _audioSource.clip = _pickUpAudioClip;
-            _audioSource.pitch = Random.Range(0.9f, 1.1f);
+            _audioSource.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
             _audioSource.volume = 1.0f;
             _audioSource.Play();
+
+            gameObject.GetComponent<Rigidbody>().useGravity = false;
+            this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+            _model.SetActive(false);
+
             yield return new WaitForSeconds(_pickUpAudioClip.length);
         }
 

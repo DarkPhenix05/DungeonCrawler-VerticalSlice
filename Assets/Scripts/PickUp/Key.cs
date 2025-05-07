@@ -9,7 +9,7 @@ public class Key : MonoBehaviour
 
     [Header("INVENTORY PARAMETERS")]
     private GameObject _player;
-    private Inventorry _inventorry;
+    private Inventory _inventorry;
 
     [Range(1, 3)]
     [SerializeField] private int _tipe;
@@ -38,7 +38,7 @@ public class Key : MonoBehaviour
     void Awake()
     {
         _player = GameObject.FindObjectOfType<Player>().gameObject;
-        _inventorry = GameObject.FindObjectOfType<Inventorry>();
+        _inventorry = GameObject.FindObjectOfType<Inventory>();
         _audioSource = GetComponent<AudioSource>();
     }
 
@@ -115,10 +115,10 @@ public class Key : MonoBehaviour
     {
         if (_pickUpAudioClip && _audioSource)
         {
-            Debug.Log(this.gameObject.ToString() + "AUDIO WORKERD");
+            //Debug.Log(this.gameObject.ToString() + "AUDIO WORKERD");
 
             _audioSource.clip = _pickUpAudioClip;
-            _audioSource.pitch = Random.Range(0.9f, 1.1f);
+            _audioSource.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
             _audioSource.volume = 1.0f;
             _audioSource.Play();
 

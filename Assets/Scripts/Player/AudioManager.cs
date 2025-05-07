@@ -20,8 +20,8 @@ public class AudioManager : MonoBehaviour
         if (!_soundEffects.isPlaying)
         {
             _soundEffects.volume = 10.0f;
-            _soundEffects.pitch = Random.Range(0.9f, 1.1f);
-            _soundEffects.clip = _walk[Random.Range(0, _walk.Count)];
+            _soundEffects.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
+            _soundEffects.clip = _walk[UnityEngine.Random.Range(0, _walk.Count)];
             _soundEffects.Play();
         }
     }
@@ -39,21 +39,21 @@ public class AudioManager : MonoBehaviour
     {
         if (!_voiceLines.isPlaying)
         {
-            _voiceLines.pitch = Random.Range(0.9f, 1.1f); 
-            _voiceLines.clip = _gruntsClips[Random.Range(0, _gruntsClips.Count)];
+            _voiceLines.pitch = UnityEngine.Random.Range(0.9f, 1.1f); 
+            _voiceLines.clip = _gruntsClips[UnityEngine.Random.Range(0, _gruntsClips.Count)];
             _voiceLines.Play();
         }
 
         _swordSource.Pause(); 
-        _swordSource.pitch = Random.Range(0.9f, 1.1f); 
-        _swordSource.clip = _sword[ Random.Range(0, _sword.Count)];
+        _swordSource.pitch = UnityEngine.Random.Range(0.9f, 1.1f); 
+        _swordSource.clip = _sword[UnityEngine.Random.Range(0, _sword.Count)];
         _swordSource.Play();
        
     }
 
-    public void PlayChargedAtackSound()
+    public void PlayChargedAttackSound()
     {
-        _swordSource.pitch = Random.Range(0.9f, 1.1f); 
+        _swordSource.pitch = UnityEngine.Random.Range(0.9f, 1.1f); 
         _swordSource.Pause();
         _swordSource.clip = _ChargeClip;
         _swordSource.Play();

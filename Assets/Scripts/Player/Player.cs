@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
     
     [Header("Inventory - Interactions")]
     public GameObject _interactionObject;
-    [SerializeField] private Inventorry _inventorry;
+    [SerializeField] private Inventory _inventorry;
     public bool canCollect = false;
     public bool inRange = false;
     public bool chest = false;
@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
         _playerInputActions.Player.Enable();
         _playerInputActions.Player.Movement.performed += Movement_performed;
         
-        _inventorry = FindObjectOfType<Inventorry>();
+        _inventorry = FindObjectOfType<Inventory>();
         _rb = this.gameObject.GetComponent<Rigidbody>();
         _anim = this.gameObject.GetComponent<Animator>();
         _audioManager =  this.gameObject.GetComponent<AudioManager>();
@@ -231,7 +231,7 @@ public class Player : MonoBehaviour
         else if (context.canceled && !_heaviAttak)
         {
             _anim.SetTrigger("Attack");
-            _anim.SetFloat("AttackNum", Random.Range(1, 3));
+            _anim.SetFloat("AttackNum", UnityEngine.Random.Range(1, 3));
             _sword.SetPosition(0);
             StartCoroutine(TurnAttackCollider(_attackDuration));
 
@@ -255,7 +255,7 @@ public class Player : MonoBehaviour
         else if (context.performed)
         {
             _heaviAttak = true;
-            _audioManager.PlayChargedAtackSound();
+            _audioManager.PlayChargedAttackSound();
         }
         else if (context.canceled && _heaviAttak)
         {

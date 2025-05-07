@@ -34,7 +34,7 @@ Transform:
   m_Children:
   - {fileID: 4746658918795984575}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2427049337950560509
 MonoBehaviour:
@@ -48,14 +48,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0e80a493954a104f96f0a7b43319448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _value: 1
+  _value: 5
   _turnSpeed: 20
   _hopSpeed: 0.5
   _hopTop: 0.5
   _hopBottom: 0
   _model: {fileID: 2552547324790877535}
-  _pickUpAudioClip: {fileID: 0}
-  _hoverAudioClip: {fileID: 0}
+  _pickUpAudioClip: {fileID: 8300000, guid: ea7d8df05ff4db840be06364de2dcc34, type: 3}
+  _hoverAudioClip: {fileID: 8300000, guid: ea7d8df05ff4db840be06364de2dcc34, type: 3}
 --- !u!54 &2065696541647709072
 Rigidbody:
   m_ObjectHideFlags: 0
