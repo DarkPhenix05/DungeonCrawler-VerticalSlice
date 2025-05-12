@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ecbcd8765c9993489c9da540c3a7ae9, type: 3}
   m_Name: OgreStats
   m_EditorClassIdentifier: 
-  hp: 3
+  maxHP: 3
   attackPower: 1
   attackFrequency: 1.25
   speed: 6

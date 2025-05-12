@@ -22,6 +22,7 @@ public class EnemyScript : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _audioManager = GetComponent<AudioEnenmy>();
+        hp = stats.maxHP;
     }
 
     private void Update()

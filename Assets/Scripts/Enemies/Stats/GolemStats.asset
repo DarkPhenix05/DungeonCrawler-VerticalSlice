@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ecbcd8765c9993489c9da540c3a7ae9, type: 3}
   m_Name: GolemStats
   m_EditorClassIdentifier: 
-  hp: 6
+  maxHP: 6
   attackPower: 3
   attackFrequency: 1.75
   speed: 3
