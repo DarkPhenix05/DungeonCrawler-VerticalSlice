@@ -7614,10 +7614,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1042461356}
     m_Modifications:
+    - target: {fileID: 1116887168730981190, guid: 61bf5f71fb1434c4294ec1589ec5ce1b,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1765544555026132170, guid: 61bf5f71fb1434c4294ec1589ec5ce1b,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 2102916372149458353, guid: 61bf5f71fb1434c4294ec1589ec5ce1b,
         type: 3}
       propertyPath: m_Name
       value: Golem
+      objectReference: {fileID: 0}
+    - target: {fileID: 4238844614816311927, guid: 61bf5f71fb1434c4294ec1589ec5ce1b,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 5150883708400517681, guid: 61bf5f71fb1434c4294ec1589ec5ce1b,
         type: 3}
@@ -10767,6 +10782,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1042461356}
     m_Modifications:
+    - target: {fileID: 2535649140553717437, guid: 83f4ca17a9db8c245a3db06c18fde11d,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 2929826205559997948, guid: 83f4ca17a9db8c245a3db06c18fde11d,
         type: 3}
       propertyPath: m_RootOrder
@@ -10821,6 +10841,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162511139049715689, guid: 83f4ca17a9db8c245a3db06c18fde11d,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3585391608431785442, guid: 83f4ca17a9db8c245a3db06c18fde11d,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 5980814434492281174, guid: 83f4ca17a9db8c245a3db06c18fde11d,
         type: 3}
