@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
     public PlayerInput _playerInput;
     public PlayerInputActions _playerInputActions;
 
-
     [Header("Movement")]
     public Rigidbody _rb;
     public Camera _mainCamera;
@@ -80,7 +79,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if(!_attacking && !_isDead)
+        if(!_attacking && !_isDead && !PauseMenu.instance.GameIsPaused)
         {
             _movement = _playerInputActions.Player.Movement.ReadValue<Vector2>();
             Movement();
@@ -220,7 +219,7 @@ public class Player : MonoBehaviour
     public void NormalAttack(InputAction.CallbackContext context)
     {
         
-        if(_attacking || inRange || _isDead)
+        if(_attacking || inRange || _isDead || PauseMenu.instance.GameIsPaused)
             return;
         
         if (context.started)
@@ -244,7 +243,7 @@ public class Player : MonoBehaviour
 
     public void HeavyAttack(InputAction.CallbackContext context)
     {
-        if(_attacking || inRange || _isDead)
+        if(_attacking || inRange || _isDead || PauseMenu.instance.GameIsPaused)
             return;
         
         if (context.started)

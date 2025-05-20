@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class EnemyScript : MonoBehaviour
 
     private Coroutine stopMovementCoroutine;
     public float atkTimer;
+
+    //Evento que se llama cuando un enemigo es derrotado.
+    public UnityEvent onKilledEnemyEvent;
 
     private void Awake()
     {
@@ -45,7 +49,10 @@ public class EnemyScript : MonoBehaviour
         hp -= _dmg;
 
         if (hp <= 0)
+        {
             gameObject.SetActive(false);
+            onKilledEnemyEvent?.Invoke();
+        }
 
     }
 
