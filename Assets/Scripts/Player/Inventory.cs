@@ -9,6 +9,9 @@ public class Inventory : MonoBehaviour
 {
     [Header("UI")]
     public Text goldText;
+    public Image smallKeyImg;
+    public Image mediumKeyImg;
+    public Image bigKeyImg;
 
     public AudioSource _audioSource;
     public AudioClip _goldSFX;
@@ -43,6 +46,10 @@ public class Inventory : MonoBehaviour
         _audioSource = gameObject.GetComponent<AudioSource>();
 
         _transform = this.gameObject.transform;
+
+        smallKeyImg.gameObject.SetActive(false);
+        mediumKeyImg.gameObject.SetActive(false);
+        bigKeyImg.gameObject.SetActive(false);
 
         UpdateUIGoldValue();
 
@@ -176,6 +183,19 @@ public class Inventory : MonoBehaviour
 
         int T = tempkey.GetTipe();
         AddKey(T);
+
+        switch (tipe)
+        {
+            case 1:
+                smallKeyImg?.gameObject.SetActive(true);
+                break;
+            case 2:
+                mediumKeyImg?.gameObject.SetActive(true);
+                break;
+            case 3:
+                bigKeyImg?.gameObject.SetActive(true);
+                break;
+        }
     }
 
     public bool HaveNeededKey(int tipe)
@@ -201,14 +221,17 @@ public class Inventory : MonoBehaviour
         {
             case 1:
                 _smallKey--;
+                smallKeyImg?.gameObject.SetActive(false);
                 return;
 
             case 2:
                 _midKey--;
+                mediumKeyImg?.gameObject.SetActive(false);
                 return;
 
             case 3:
                 _bigKey--;
+                bigKeyImg?.gameObject.SetActive(false);
                 return;
         }
     }
