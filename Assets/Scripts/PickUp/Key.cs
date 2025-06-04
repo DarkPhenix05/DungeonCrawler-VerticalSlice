@@ -126,7 +126,7 @@ public class Key : MonoBehaviour
             this.gameObject.GetComponent<SphereCollider>().enabled = false;
             _model.SetActive(false);
 
-            keyIcon.gameObject.SetActive(true);
+            //keyIcon.gameObject.SetActive(true);
 
             yield return new WaitForSeconds(_pickUpAudioClip.length);
         }
