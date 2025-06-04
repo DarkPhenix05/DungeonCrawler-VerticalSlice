@@ -52,8 +52,8 @@ public class Player : MonoBehaviour
     public bool canCollect = false;
     public bool inRange = false;
     public bool chest = false;
-    public bool normalDoor = false;
-    public bool boosDoor = false;
+    public bool bossDoor = false;
+    public bool endDoor = false;
 
     [Header("UI")]
     public GameObject _hud;
@@ -186,15 +186,15 @@ public class Player : MonoBehaviour
                 _inventorry.UseKey(1);
             }
 
-            else if(normalDoor)
+            else if(bossDoor)
             {
-                _interactionObject.GetComponent<Door>().Open();
+                _interactionObject.GetComponent<Door>().OpenBossDoor();
                 _inventorry.UseKey(2);
             }
 
-            else if(boosDoor)
+            else if(endDoor)
             {
-                _interactionObject.GetComponent<Door>().Open();
+                _interactionObject.GetComponent<Door>().OpenEndDoor();
                 _inventorry.UseKey(3);
             }
         }
@@ -204,7 +204,7 @@ public class Player : MonoBehaviour
             {
                 _interactionObject.GetComponent<Chest>().Loked();
             }
-            else if(normalDoor || boosDoor)
+            else if(bossDoor || endDoor)
             {
                 _interactionObject.GetComponent<Door>().Locked();
             }

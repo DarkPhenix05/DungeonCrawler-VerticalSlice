@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    public GameObject bossDoor;
+    public GameObject endDoor;
+
     public bool boosDoor = false;
 
     private GameObject _player;
@@ -30,11 +33,11 @@ public class Door : MonoBehaviour
             {
                 if (!boosDoor)
                 {
-                    _playerScript.normalDoor = true;
+                    _playerScript.bossDoor = true;
                 }
                 else
                 {
-                    _playerScript.boosDoor = true;
+                    _playerScript.endDoor = true;
                 }
                 _playerScript.inRange = true;
                 _playerScript._interactionObject = this.gameObject;
@@ -49,17 +52,22 @@ public class Door : MonoBehaviour
     {
         if (other.gameObject == _player)
         {
-            _playerScript.normalDoor = false;
-            _playerScript.boosDoor= false;
+            _playerScript.bossDoor = false;
+            _playerScript.endDoor= false;
             _playerScript.inRange = false;
             _playerScript.canCollect = false;
             _playerScript._interactionObject = null;
         }
     }
 
-    public void Open()
+    public void OpenBossDoor()
     {
+        bossDoor.gameObject.SetActive(false);
+    }
 
+    public void OpenEndDoor()
+    {
+        endDoor.gameObject.SetActive(false);
     }
 
     public void Locked()

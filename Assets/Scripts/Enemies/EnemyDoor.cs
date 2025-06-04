@@ -54,10 +54,11 @@ public class EnemyDoor : MonoBehaviour
             if (Inventory.instance.HaveNeededKey(2))
             {
                 hint.text = "Press interact to open door";
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    doorGameObject.SetActive(false);
-                }
+                other.gameObject.GetComponent<Player>().bossDoor = true;
+                //if (Input.GetKeyDown(KeyCode.E))
+                //{
+                //    doorGameObject.SetActive(false);
+                //}
             }
             else
             {
