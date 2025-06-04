@@ -111,6 +111,7 @@ public class Key : MonoBehaviour
         return _tipe;
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     IEnumerator TakeKey()
     {
         if (_pickUpAudioClip && _audioSource)
