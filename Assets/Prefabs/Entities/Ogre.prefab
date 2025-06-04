@@ -203,7 +203,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -584,7 +584,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1017,7 +1017,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1214,8 +1214,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.43, y: 1.91, z: 1.46}
-  m_Center: {x: -0.16589284, y: 0.95, z: 0.23231488}
+  m_Size: {x: 1.85, y: 1.91, z: 1.46}
+  m_Center: {x: 0, y: 0.95, z: 0.23231488}
 --- !u!54 &7015834934856356902
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1258,10 +1258,13 @@ MonoBehaviour:
   _audioManager: {fileID: 0}
   stats: {fileID: 11400000, guid: 376a5bef8921f124ab74916d12681358, type: 2}
   _rb: {fileID: 7015834934856356902}
-  hp: 0
+  hp: 10
   agent: {fileID: 4350481782682816579}
   agentDestination: {fileID: 0}
   atkTimer: 0
+  onKilledEnemyEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8895228627426593436
 MonoBehaviour:
   m_ObjectHideFlags: 0

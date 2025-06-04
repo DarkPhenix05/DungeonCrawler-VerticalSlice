@@ -6,40 +6,37 @@ using UnityEngine.UI;
 
 public class EnemyDoor : MonoBehaviour
 {
-    public UnityEvent onKillEnemyEvent;
     public List<EnemyScript> enemies;
     public GameObject doorGameObject;
-    private int counter = 0;
+    private int _counter = 0;
 
     public Text hint;
-    public GameObject mediumKeyReward;
-    public Transform keyPos;
+    public GameObject key;
+    private bool _canOpen = false;
+
+    [Header("BOSS")]
+    public GameObject BOSS;
 
     private void Start()
     {
-        // A todos los enemigos se les asigna como su onKilledEnemyEvent la función de DoorDisableCounter. Los eventos añadidios por código no
-        // Se reflejan en el inspector.
-        for (int i = 0; i < enemies.Count; i++)
-        {
-            enemies[i].onKilledEnemyEvent.AddListener(DoorDisableCounter);
-        }
+        key.SetActive(false);
+        BOSS.SetActive(false);
     }
 
-    //Esta función se llamará cuando un enemigo sea derrotado subiendo el contador que cuando sea igual o mayor al número de enemigos asignados en la
-    //lista desaparecerá la puerta, aqui recomiendo reemplazar el set active por un tween para un efecto más estético.
-    public void DoorDisableCounter()
+    //Esta funciï¿½n se llamarï¿½ cuando un enemigo sea derrotado subiendo el contador que cuando sea igual o mayor al nï¿½mero de enemigos asignados en la
+    //lista desaparecerï¿½ la puerta, aqui recomiendo reemplazar el set active por un tween para un efecto mï¿½s estï¿½tico.
+    public void DoorDisableCounter(Transform enemyTransform)
     {
-        counter++;
-        if (counter >= enemies.Count)
+        _counter++;
+        if (_counter >= enemies.Count)
         {
-            //Drop Mid Key at position of last enemy killed
-            //enemies[^1].transform
-            Instantiate(mediumKeyReward, keyPos);
-            Debug.Log("MediumKeyInstantiated");
+            key.transform.position = enemyTransform.position; 
+            key.SetActive(true);
+            Debug.Log("MediumKeyInstantiated at:" + enemyTransform.position.ToString());
         }
     }
 
-    //Esta función es para activar la puerta, recomiendo usar un script por aparte con una función on triggerEnter que llame a esta función para activar
+    //Esta funciï¿½n es para activar la puerta, recomiendo usar un script por aparte con una funciï¿½n on triggerEnter que llame a esta funciï¿½n para activar
     //la puerta, una vez que pase desabilitar el trigger para que el jugador no vuelva a interactuar con el.
     public void DoorEnable()
     {
@@ -48,13 +45,15 @@ public class EnemyDoor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         if(other.gameObject.CompareTag("Player"))
         {
             hint.gameObject.SetActive(true);
-            if (Inventory.instance.HaveNeededKey(2))
+            if (Inventory.instance.HaveNeededKey(2)) 
             {
                 hint.text = "Press interact to open door";
-                other.gameObject.GetComponent<Player>().bossDoor = true;
+                other.gameObject.GetComponent<Player>().SetBossDoor(true, this.gameObject);
+                Debug.Log("Player has required key for boss door");
                 //if (Input.GetKeyDown(KeyCode.E))
                 //{
                 //    doorGameObject.SetActive(false);
@@ -65,6 +64,10 @@ public class EnemyDoor : MonoBehaviour
                 hint.text = "You need a medium key to open this door...";
             }
         }
+        else
+        {
+            
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -72,6 +75,15 @@ public class EnemyDoor : MonoBehaviour
         if(other.gameObject.CompareTag("Player"))
         {
             hint.gameObject.SetActive(false);
+            other.gameObject.GetComponent<Player>().SetBossDoor(false); 
         }
+    }
+
+    public void OpenBossDoor(GameObject other)
+    {
+        hint.gameObject.SetActive(false);
+        BOSS.SetActive(true);
+        other.gameObject.GetComponent<Player>().SetBossDoor(false); 
+        doorGameObject.SetActive(false);
     }
 }

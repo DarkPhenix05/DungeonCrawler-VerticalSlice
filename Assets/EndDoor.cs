@@ -17,11 +17,7 @@ public class EndDoor : MonoBehaviour
             if (Inventory.instance.HaveNeededKey(3))
             {
                 hint.text = "Press interact to open door";
-                other.gameObject.GetComponent<Player>().endDoor = true;
-                //if (Input.GetKeyDown(KeyCode.E))
-                //{
-                //    doorGameObject.SetActive(false);
-                //}
+                other.gameObject.GetComponent<Player>().SetExitDoor(true, this.gameObject); 
             }
             else
             {
@@ -35,6 +31,14 @@ public class EndDoor : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             hint.gameObject.SetActive(false);
+            other.gameObject.GetComponent<Player>().SetExitDoor(false); 
         }
+    }
+
+    public void OpenEndDoor(GameObject other)
+    {
+        hint.gameObject.SetActive(false);
+        other.gameObject.GetComponent<Player>().SetExitDoor(false); 
+        doorGameObject.SetActive(false);
     }
 }

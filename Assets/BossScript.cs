@@ -1,14 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BossScript : MonoBehaviour
 {
-    public GameObject goldKey;
-    public Transform keyPos;
+    public GameObject _goldKey;
+
+    private void Start()
+    {
+        _goldKey.SetActive(false);
+    }
 
     private void OnDisable()
     {
-        Instantiate(goldKey, keyPos);
+        _goldKey.transform.position = this.gameObject.transform.position;
+        _goldKey.SetActive(true);
     }
 }

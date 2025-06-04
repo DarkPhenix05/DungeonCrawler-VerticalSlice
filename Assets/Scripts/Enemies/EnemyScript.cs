@@ -19,6 +19,8 @@ public class EnemyScript : MonoBehaviour
     private Coroutine stopMovementCoroutine;
     public float atkTimer;
 
+    public EnemyDoor enemyDoor;
+
     //Evento que se llama cuando un enemigo es derrotado.
     public UnityEvent onKilledEnemyEvent;
 
@@ -27,6 +29,7 @@ public class EnemyScript : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _audioManager = GetComponent<AudioEnenmy>();
         hp = stats.maxHP;
+        enemyDoor = FindAnyObjectByType<EnemyDoor>();
     }
 
     private void Update()
@@ -50,6 +53,7 @@ public class EnemyScript : MonoBehaviour
 
         if (hp <= 0)
         {
+            enemyDoor.DoorDisableCounter(this.gameObject.transform);
             gameObject.SetActive(false);
             onKilledEnemyEvent?.Invoke();
         }

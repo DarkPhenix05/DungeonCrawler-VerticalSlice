@@ -188,13 +188,13 @@ public class Player : MonoBehaviour
 
             else if(bossDoor)
             {
-                _interactionObject.GetComponent<Door>().OpenBossDoor();
+                _interactionObject.GetComponent<EnemyDoor>().OpenBossDoor(this.gameObject);
                 _inventorry.UseKey(2);
             }
 
             else if(endDoor)
             {
-                _interactionObject.GetComponent<Door>().OpenEndDoor();
+                _interactionObject.GetComponent<EndDoor>().OpenEndDoor(this.gameObject);
                 _inventorry.UseKey(3);
             }
         }
@@ -341,5 +341,25 @@ public class Player : MonoBehaviour
             _rb.AddForce(Vector2.up * 5f, ForceMode.Impulse);
             Debug.Log("JUMP");
         }
+    }
+
+    public void SetBossDoor(bool val, GameObject interactionObj = null)
+    {
+        bossDoor = val;
+        inRange = val;
+        _interactionObject = interactionObj;
+        
+        if(inRange)
+            canCollect = _inventorry.HaveNeededKey(2);
+    }
+
+    public void SetExitDoor(bool val, GameObject interactionObj = null)
+    {
+        endDoor = val;
+        inRange = val;
+        _interactionObject = interactionObj;
+        
+        if(inRange)
+            canCollect = _inventorry.HaveNeededKey(3);
     }
 }

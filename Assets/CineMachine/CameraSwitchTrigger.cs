@@ -74,8 +74,7 @@ public class CameraSwitchTrigger : MonoBehaviour
         if (_player != null)
         {
             CameraManager.instance.CameraSwitch(_cameraToSwitch);
-
-            Debug.Log(CameraManager.instance.name);
+            
             if (_cameraManager.GetCurVC(_cameraToSwitch).name == _staticName)
             {
                 _staticCamera.transform.position = _cameraPos.position;
