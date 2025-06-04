@@ -221,7 +221,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 891125335314631209}
-  - component: {fileID: 4329571209361698081}
+  - component: {fileID: 6570943815557319384}
   - component: {fileID: 3625493663408290312}
   m_Layer: 3
   m_Name: Inventory
@@ -247,7 +247,7 @@ Transform:
   m_Father: {fileID: 3413181116908433515}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4329571209361698081
+--- !u!114 &6570943815557319384
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -256,19 +256,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 795064482486539373}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 247429284c9852746b4fb015a5fc00b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 84b61bd0cca2dad44b8c0b34e2e1dc10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   goldText: {fileID: 0}
-  _audioSource: {fileID: 0}
-  _goldSFX: {fileID: 8300000, guid: d2b7805dd81fea446bc8d4d51145c276, type: 3}
+  smallKeyImg: {fileID: 0}
+  mediumKeyImg: {fileID: 0}
+  bigKeyImg: {fileID: 0}
+  _audioSource: {fileID: 3625493663408290312}
+  _goldSFX: {fileID: 0}
   _weapons:
   - {fileID: 1955085661272805539}
   _shields:
   - {fileID: 2436859006579809876}
   _gold: 0
   _tempGold: 0
-  animDuration: 0.5
+  animDuration: 0
   _smallKey: 0
   _midKey: 0
   _bigKey: 0
@@ -746,7 +749,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3413181116908433515}
   - component: {fileID: 7784157123912669156}
-  - component: {fileID: 6100250111830827403}
   - component: {fileID: 3014002465144741444}
   - component: {fileID: 3114151109543536281}
   - component: {fileID: 4035932789336336751}
@@ -821,31 +823,6 @@ MonoBehaviour:
   boosDoor: 0
   _hud: {fileID: 0}
   _GOUI: {fileID: 0}
---- !u!114 &6100250111830827403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4280285993489956741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 247429284c9852746b4fb015a5fc00b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goldText: {fileID: 0}
-  _audioSource: {fileID: 0}
-  _goldSFX: {fileID: 0}
-  _weapons: []
-  _shields: []
-  _gold: 0
-  _tempGold: 0
-  animDuration: 0
-  _smallKey: 0
-  _midKey: 0
-  _bigKey: 0
-  _selectedWeapon: 0
-  _transform: {fileID: 0}
 --- !u!82 &3014002465144741444
 AudioSource:
   m_ObjectHideFlags: 0
