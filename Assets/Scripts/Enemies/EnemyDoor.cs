@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class EnemyDoor : MonoBehaviour
 {
@@ -8,6 +10,10 @@ public class EnemyDoor : MonoBehaviour
     public List<EnemyScript> enemies;
     public GameObject doorGameObject;
     private int counter = 0;
+
+    public Text hint;
+    public GameObject mediumKeyReward;
+    public Transform keyPos;
 
     private void Start()
     {
@@ -26,7 +32,10 @@ public class EnemyDoor : MonoBehaviour
         counter++;
         if (counter >= enemies.Count)
         {
-            doorGameObject.SetActive(false);
+            //Drop Mid Key at position of last enemy killed
+            //enemies[^1].transform
+            Instantiate(mediumKeyReward, keyPos);
+            Debug.Log("MediumKeyInstantiated");
         }
     }
 
@@ -35,5 +44,33 @@ public class EnemyDoor : MonoBehaviour
     public void DoorEnable()
     {
         doorGameObject.SetActive(false);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            hint.gameObject.SetActive(true);
+            if (Inventory.instance.HaveNeededKey(2))
+            {
+                hint.text = "Press interact to open door";
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    doorGameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                hint.text = "You need a medium key to open this door...";
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            hint.gameObject.SetActive(false);
+        }
     }
 }

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
+    public static Inventory instance;
+
     [Header("UI")]
     public Text goldText;
     public Image smallKeyImg;
@@ -40,6 +42,8 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
+        instance = this;
+
         _leftTransform = GameObject.Find("weapon_l").transform;
         _rightTransform = GameObject.Find("weapon_r").transform;
 
@@ -47,9 +51,9 @@ public class Inventory : MonoBehaviour
 
         _transform = this.gameObject.transform;
 
-        smallKeyImg.gameObject.SetActive(false);
-        mediumKeyImg.gameObject.SetActive(false);
-        bigKeyImg.gameObject.SetActive(false);
+        smallKeyImg?.gameObject.SetActive(false);
+        mediumKeyImg?.gameObject.SetActive(false);
+        bigKeyImg?.gameObject.SetActive(false);
 
         UpdateUIGoldValue();
 
@@ -307,5 +311,15 @@ public class Inventory : MonoBehaviour
         _audioSource.volume = 1.0f;
         _audioSource.Play();
         _audioSource.DORestart();
+    }
+
+    public bool MediumKey()
+    {
+        return _midKey > 0;
+    }
+
+    public bool BigKey()
+    {
+        return _bigKey > 0;
     }
 }
