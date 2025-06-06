@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Transition
   - StaticRoomCamera
+  - HUD
+  - GOUI
   layers:
   - Default
   - TransparentFX

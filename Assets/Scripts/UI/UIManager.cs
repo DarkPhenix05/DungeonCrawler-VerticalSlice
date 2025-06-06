@@ -14,6 +14,10 @@ public class UIManager : MonoBehaviour
     public Image fadeImage;
     public float fadeTime;
 
+    [Header("HUD")]
+    public GameObject goHUD;
+    public GameObject goDS;
+
     void Awake()
     {
         if (!instance)
@@ -25,6 +29,9 @@ public class UIManager : MonoBehaviour
             Destroy(this.gameObject);
         }
         DontDestroyOnLoad(this);
+
+        GetRefs();
+        goHUD.SetActive(false);
     }
 
     public void ChangeSceneTo(int scene, Image image, float time)
@@ -60,5 +67,23 @@ public class UIManager : MonoBehaviour
     {
         fadeImage = GameObject.FindGameObjectWithTag("Transition").GetComponent<Image>();
         return fadeImage;
+    }
+
+    private void GetRefs()
+    {
+        fadeImage = GetTransitionImage();
+        goHUD = GameObject.FindGameObjectWithTag("HUD");
+        goHUD = GameObject.FindGameObjectWithTag("GOUI");
+    }
+
+    public void DeathScreen()
+    {
+        GetRefs();
+        fadeImage.DOFade(0.85f, 0.15f).SetUpdate(true);
+        Time.timeScale = 0;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+        goHUD.gameObject.SetActive(false);
+        goDS.gameObject.SetActive(true);
     }
 }

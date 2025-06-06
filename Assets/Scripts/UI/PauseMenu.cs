@@ -80,6 +80,7 @@ public class PauseMenu : MonoBehaviour
     {
         image.SetActive(true);
         imageCom = image.GetComponent<Image>();
-        UIManager.instance.ChangeSceneTo(1, imageCom, time);
+        SceneManager.LoadScene(1);
+        //UIManager.instance.ChangeSceneTo(1, imageCom, time);
     }
 }

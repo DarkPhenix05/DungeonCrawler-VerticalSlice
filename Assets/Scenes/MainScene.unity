@@ -1714,7 +1714,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 9999
+  m_Text: 0
 --- !u!222 &461809338
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4517,11 +4517,11 @@ GameObject:
   - component: {fileID: 1364562025}
   m_Layer: 5
   m_Name: GameOverUI
-  m_TagString: Untagged
+  m_TagString: GOUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1364562025
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4556,7 +4556,7 @@ GameObject:
   - component: {fileID: 1372693026}
   m_Layer: 5
   m_Name: HUD
-  m_TagString: Untagged
+  m_TagString: HUD
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6597,6 +6597,55 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 772e87e532d35734e804708cfa34d41b, type: 3}
+--- !u!1 &2012418212
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2012418214}
+  - component: {fileID: 2012418213}
+  m_Layer: 0
+  m_Name: UI Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2012418213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012418212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfb573861f728a549b218917ca6db559, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentScene: 0
+  fadeImage: {fileID: 1540625678}
+  fadeTime: 0.15
+  goHUD: {fileID: 1372693025}
+  goDS: {fileID: 1364562024}
+--- !u!4 &2012418214
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012418212}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2103418118
 GameObject:
   m_ObjectHideFlags: 0
@@ -7417,12 +7466,12 @@ PrefabInstance:
         type: 3}
       propertyPath: _hud
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1372693025}
     - target: {fileID: 7784157123912669156, guid: dd6e156d84f95f842af447bab31f1785,
         type: 3}
       propertyPath: _GOUI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1364562024}
     - target: {fileID: 7784157123912669156, guid: dd6e156d84f95f842af447bab31f1785,
         type: 3}
       propertyPath: _healthBar
