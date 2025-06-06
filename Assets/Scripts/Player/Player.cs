@@ -338,7 +338,7 @@ public class Player : MonoBehaviour
 
         if (context.started)
         {
-            _rb.AddForce(Vector2.up * 5f, ForceMode.Impulse);
+            //_rb.AddForce(Vector2.up * 5f, ForceMode.Impulse);
             Debug.Log("JUMP");
         }
     }
